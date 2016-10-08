@@ -1,6 +1,7 @@
 /**
  * Sample React Native App
  * https://github.com/facebook/react-native
+ * @flow
  */
 
 import React from 'react-native';
@@ -13,10 +14,14 @@ import {
 import Tabs from 'react-native-tabs';
 
 export default class Example extends React.Component {
-  constructor(props) {
+
+  constructor(props: any) {
     super(props);
-    this.state = { page: 'second' };
+    this.state = { 
+      page: 'second' 
+    };
   }
+
   render() {
     var self = this;
     return (
