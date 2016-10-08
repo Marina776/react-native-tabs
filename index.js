@@ -27,7 +27,7 @@ type Props = {
 export default class Tabs extends Component {
   state: State = {}
 
-	constructor(props: Object) {
+	constructor(props: any): void {
     super(props);
 
     this.onSelect = this.onSelect.bind(this);
@@ -35,7 +35,7 @@ export default class Tabs extends Component {
     this.keyboardWillShow = this.keyboardWillShow.bind(this);
   }
 
-  onSelect(el: Object){
+  onSelect(el: any): void{
     if (el.props.onSelect) {
       el.props.onSelect(el);
     } else if (this.props.onSelect) {
@@ -50,15 +50,15 @@ export default class Tabs extends Component {
     }
   }
 
-  keyboardWillShow(e: Object) {
+  keyboardWillShow(e: any) {
   	this.setState({ keyboardUp: true });
   };
   
-  keyboardWillHide(e: Object) {
+  keyboardWillHide(e: any) {
     this.setState({ keyboardUp: false });
   };
 
-  render(): void {
+  render(): any {
 		const self = this;
 		let selected = this.props.selected;
 		if (!selected){
