@@ -1,31 +1,41 @@
 "use strict";
 
 import React, {
-    Component
+  Component
 } from "react";
 
 import {
-    StyleSheet,
-    View,
-    Text,
-    TouchableOpacity,
-    Keyboard,
-    Platform,
+	StyleSheet,
+	View,
+	Text,
+	TouchableOpacity,
+	Keyboard,
+	Platform,
 } from "react-native";
 
+/* 
+ Options: ["^State$"]
+*/
+type State = {
+    keyboardUp: boolean
+};
+
+type Props = {
+
+};
+
 export default class Tabs extends Component {
-  constructor(props) {
+  state: State = {}
+
+	constructor(props: Object) {
     super(props);
-    this.state = {
-        keyboardUp: false
-    }
 
     this.onSelect = this.onSelect.bind(this);
     this.keyboardWillHide = this.keyboardWillHide.bind(this);
     this.keyboardWillShow = this.keyboardWillShow.bind(this);
   }
 
-  onSelect(el){
+  onSelect(el: Object){
     if (el.props.onSelect) {
       el.props.onSelect(el);
     } else if (this.props.onSelect) {
@@ -34,23 +44,23 @@ export default class Tabs extends Component {
   }
 
   componentWillMount(){
-    if (Platform.OS==='android') {
-      Keyboard.addListener('keyboardDidShow', this.keyboardWillShow);
-      Keyboard.addListener('keyboardDidHide', this.keyboardWillHide);
+    if (Platform.OS === "android") {
+      Keyboard.addListener("keyboardDidShow", this.keyboardWillShow);
+      Keyboard.addListener("keyboardDidHide", this.keyboardWillHide);
     }
   }
 
-  keyboardWillShow(e) {
+  keyboardWillShow(e: Object) {
   	this.setState({ keyboardUp: true });
   };
   
-  keyboardWillHide(e) {
+  keyboardWillHide(e: Object) {
     this.setState({ keyboardUp: false });
   };
 
-  render(){
+  render(): void {
 		const self = this;
-		let selected = this.props.selected
+		let selected = this.props.selected;
 		if (!selected){
 			React.Children.forEach(this.props.children.filter(c=>c), el=>{
 				if (!selected || el.props.initial){
@@ -61,7 +71,7 @@ export default class Tabs extends Component {
 		return (
 			<View style={[styles.tabbarView, this.props.style, this.state.keyboardUp && styles.hidden]}>
 				{React.Children.map(this.props.children.filter(c=>c),(el)=>
-					<TouchableOpacity key={el.props.name+"touch"}
+					<TouchableOpacity key={el.props.name + "touch"}
 						testID={el.props.testID}
 						style={[styles.iconView, this.props.iconStyle, (el.props.name || el.key) == selected ? this.props.selectedIconStyle || el.props.selectedIconStyle || {} : {} ]}
 						onPress={()=>!self.props.locked && self.onSelect(el)}
@@ -76,22 +86,22 @@ export default class Tabs extends Component {
 }
 const styles = StyleSheet.create({
 	tabbarView: {
-		position:'absolute',
+		position:"absolute",
 		bottom:0,
 		right:0,
 		left:0,
 		height:50,
 		opacity:1,
-		backgroundColor:'transparent',
-		flexDirection: 'row',
-		justifyContent: 'center',
-		alignItems: 'center'
+		backgroundColor:"transparent",
+		flexDirection: "row",
+		justifyContent: "center",
+		alignItems: "center"
 	},
 	iconView: {
 		flex: 1,
 		height: 50,
-		justifyContent: 'center',
-		alignItems: 'center',
+		justifyContent: "center",
+		alignItems: "center",
 	},
 	hidden: {
 		height: 0,

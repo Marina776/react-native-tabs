@@ -20,8 +20,8 @@
     ],
     "rules": {
         "indent": [
-            "error",
-            "tab"
+            1,
+            2
         ],
         "linebreak-style": [
             "error",
@@ -48,8 +48,8 @@
             2,
             "never"
         ],
-        "flowtype/no-weak-types": 2,
-        "flowtype/require-parameter-type": 2,
+        "flowtype/no-weak-types": 1,
+        "flowtype/require-parameter-type": 1,
         "flowtype/require-return-type": [
             2,
             "always",
@@ -76,7 +76,7 @@
         ],
         "flowtype/type-id-match": [
             2,
-            "^([A-Z][a-z0-9]+)+Type$"
+            "^([A-Z][a-z0-9]+)$"
         ],
         "flowtype/union-intersection-spacing": [
             2,
