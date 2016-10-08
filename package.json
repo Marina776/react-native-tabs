@@ -25,5 +25,9 @@
   },
   "homepage": "https://github.com/aksonov/react-native-tabs#readme",
   "readme": "# react-native-tabs\nReact Native platform-independent tabs. Could be used for bottom tab bars as well as sectioned views (with tab buttons)\n",
-  "readmeFilename": "README.md"
+  "readmeFilename": "README.md",
+  "devDependencies": {
+    "eslint": "^3.7.1",
+    "eslint-plugin-react": "^6.3.0"
+  }
 }
