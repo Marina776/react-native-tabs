@@ -31,4 +31,4 @@ npm-debug.log
 Example/.idea
 
 # test code
-track.js
+test/
