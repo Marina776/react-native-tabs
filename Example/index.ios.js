@@ -14,6 +14,9 @@ import {
 import Tabs from 'react-native-tabs';
 
 export default class Example extends React.Component {
+  state: {
+    page: string
+  };
 
   constructor(props: any) {
     super(props);
