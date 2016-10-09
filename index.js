@@ -20,14 +20,10 @@ type State = {
     keyboardUp: boolean
 };
 
-type Props = {
-
-};
-
 export default class Tabs extends Component {
   state: State = {}
 
-	constructor(props: any): void {
+	constructor(props: any) {
     super(props);
 
     this.onSelect = this.onSelect.bind(this);
@@ -35,7 +31,7 @@ export default class Tabs extends Component {
     this.keyboardWillShow = this.keyboardWillShow.bind(this);
   }
 
-  onSelect(el: any): void{
+  onSelect(el: any){
     if (el.props.onSelect) {
       el.props.onSelect(el);
     } else if (this.props.onSelect) {
@@ -58,11 +54,11 @@ export default class Tabs extends Component {
     this.setState({ keyboardUp: false });
   };
 
-  render(): any {
+  render() {
 		const self = this;
 		let selected = this.props.selected;
 		if (!selected){
-			React.Children.forEach(this.props.children.filter(c=>c), el=>{
+			React.Children.forEach(this.props.children.filter(c=>c), (el: any): void=>{
 				if (!selected || el.props.initial){
 						selected = el.props.name || el.key;
 				}
@@ -74,7 +70,7 @@ export default class Tabs extends Component {
 					<TouchableOpacity key={el.props.name + "touch"}
 						testID={el.props.testID}
 						style={[styles.iconView, this.props.iconStyle, (el.props.name || el.key) == selected ? this.props.selectedIconStyle || el.props.selectedIconStyle || {} : {} ]}
-						onPress={()=>!self.props.locked && self.onSelect(el)}
+						onPress={():void=>!self.props.locked && self.onSelect(el)}
 						onLongPress={()=>self.onSelect(el)}
 						activeOpacity={el.props.pressOpacity}>
 							{selected == (el.props.name || el.key) ? React.cloneElement(el, {selected: true, style: [el.props.style, this.props.selectedStyle, el.props.selectedStyle]}) : el}

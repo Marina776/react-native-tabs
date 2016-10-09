@@ -13,10 +13,14 @@ import {
 } from 'react-native';
 import Tabs from 'react-native-tabs';
 
+// type State = {
+//   page: string
+// };
+
 export default class Example extends React.Component {
   state: {
-    page: string
-  };
+    page: string 
+  }
 
   constructor(props: any) {
     super(props);
