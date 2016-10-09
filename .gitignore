@@ -29,3 +29,6 @@ npm-debug.log
 
 .idea
 Example/.idea
+
+# test code
+track.js
