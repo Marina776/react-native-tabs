@@ -70,12 +70,3 @@ var styles = StyleSheet.create({
 
 AppRegistry.registerComponent('Example', () => Example);
 
-// @flow
-
-import * as actionTypes from '../constants/actionTypes';
-
-const initialState = {
-    tracks: [],
-    activeTrack: null
-};
-
