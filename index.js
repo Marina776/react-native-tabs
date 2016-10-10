@@ -66,6 +66,7 @@ export default class Tabs extends Component {
 		}
 		return (
 			<View style={[styles.tabbarView, this.props.style, this.state.keyboardUp && styles.hidden]}>
+				<View style={styles.topBorder} />
 				{React.Children.map(this.props.children.filter(c=>c),(el)=>
 					<TouchableOpacity key={el.props.name + "touch"}
 						testID={el.props.testID}
@@ -91,11 +92,20 @@ const styles = StyleSheet.create({
 		backgroundColor:"transparent",
 		flexDirection: "row",
 		justifyContent: "center",
-		alignItems: "center"
+		alignItems: "center",
+
+		flex: 1
+	},
+	topBorder: {
+		flexDirection: 'row',
+		position:"absolute",
+		top: 0,
+		backgroundColor: 'red',
+		height: 10,
 	},
 	iconView: {
 		flex: 1,
-		height: 50,
+		height: 40,
 		justifyContent: "center",
 		alignItems: "center",
 	},

@@ -10,6 +10,7 @@ import {
   StyleSheet,
   Text,
   View,
+  Image
 } from 'react-native';
 import Tabs from 'react-native-tabs';
 
@@ -20,7 +21,7 @@ import Tabs from 'react-native-tabs';
 export default class Example extends React.Component {
   state: {
     page: string 
-  }
+  };
 
   constructor(props: any) {
     super(props);
@@ -36,11 +37,17 @@ export default class Example extends React.Component {
         <Tabs selected={this.state.page} style={{ backgroundColor: 'white' }}
           selectedStyle={{ color: 'red' }} onSelect={el => this.setState({ page: el.props.name }) }
           pressOpacity={1}>
-          <Text name="first">First</Text>
+          <View name="first">
+            <Image style={{width:30, height:30}} source={require("./images/Home@2x.png")}/>
+            <Text>First</Text>
+          </View>
           <Text name="second" selectedIconStyle={{ borderTopWidth: 2, borderTopColor: 'red' }}>Second</Text>
           <Text name="third">Third</Text>
           <Text name="fourth" selectedStyle={{ color: 'green' }}>Fourth</Text>
-          <Text name="fifth">Fifth</Text>
+          <View name="fifth">
+            <Image style={{width:30, height:30}} source={require("./images/Account@2x.png")}/>
+            <Text>First</Text>
+          </View>
         </Tabs>
         <Text style={styles.welcome}>
           Welcome to React Native
