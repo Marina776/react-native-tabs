@@ -30,5 +30,8 @@ npm-debug.log
 .idea
 Example/.idea
 
+# vscode
+.vscode
+
 # test code
 test/
