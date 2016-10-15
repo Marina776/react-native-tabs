@@ -31,7 +31,7 @@ npm-debug.log
 Example/.idea
 
 # vscode
-.vscode
+.vscode/
 
 # test code
 test/
