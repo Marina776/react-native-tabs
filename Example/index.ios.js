@@ -28,7 +28,7 @@ export default class Example extends React.Component {
   constructor(props: any) {
     super(props);
     this.state = {
-      page: 'second'
+      selectedTab: 'first'
     };
   }
 
@@ -60,7 +60,7 @@ export default class Example extends React.Component {
             this.setState({selctedTab: 'second'});
           }}>
           <View style={{flex: 1, backgroundColor:'blue'}}>
-            <Text style={{fontSize: 30}}>TAB 2</Text>
+            <Text style={{fontSize: 30, color: 'white'}}>TAB 2</Text>
           </View>
         </Tabs.Item>
         <Tabs.Item
