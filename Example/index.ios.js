@@ -45,8 +45,8 @@ export default class Example extends React.Component {
           </View>
           <Text name="second" selectedIconStyle={{ borderTopWidth: 2, borderTopColor: 'red' }}>Second</Text>
           <Tabs.Item
-            icon='./images/Account@2x.png'
-            selectedIcon='./images/Account_selected@2x.png'
+            icon={require('./images/Account@2x.png')}
+            selectedIcon={require('./images/Account_selected@2x.png')}
             title='First'
             selected={this.state.selectedTab === 'third'}
             onPress={() => {

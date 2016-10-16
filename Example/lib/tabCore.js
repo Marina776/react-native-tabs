@@ -18,7 +18,8 @@ export default class Tabs extends React.Component {
     super(props);
 
     this.state = {
-      keyboardUp: false
+      keyboardUp: false,
+      currentTabView: {}
     };
 
     this.onSelect = this.onSelect.bind(this);
@@ -28,9 +29,9 @@ export default class Tabs extends React.Component {
 
   onSelect(el: any){
     if (el.props.onSelect) {
-      el.props.onSelect(el);
+      el.props.onPress(el);
     } else if (this.props.onSelect) {
-      this.props.onSelect(el);
+      this.props.onPress(el);
     }
   }
 
@@ -60,20 +61,23 @@ export default class Tabs extends React.Component {
 			});
 		}
 		return (
-			<View style={[styles.tabbarView, this.props.style, this.state.keyboardUp && styles.hidden]}>
+      <View>
+        {}
+  			<View style={[styles.tabbarView, this.props.style, this.state.keyboardUp && styles.hidden]}>
 
-				{React.Children.map(this.props.children.filter(c=>c), (el)=>
-					<TouchableOpacity key={el.props.name + "touch"}
-						testID={el.props.testID}
-						style={[styles.iconView, this.props.iconStyle, (el.props.name || el.key) == selected ? this.props.selectedIconStyle || el.props.selectedIconStyle || {} : {} ]}
-						onPress={():void=>!self.props.locked && self.onSelect(el)}
-						onLongPress={()=>self.onSelect(el)}
-						activeOpacity={el.props.pressOpacity}>
-							{selected == (el.props.name || el.key) ? React.cloneElement(el, {selected: true, style: [el.props.style, this.props.selectedStyle, el.props.selectedStyle]}) : el}
-					</TouchableOpacity>
+  				{React.Children.map(this.props.children.filter(c=>c), (el)=>
+  					<TouchableOpacity key={el.props.name + "touch"}
+  						testID={el.props.testID}
+  						style={[styles.iconView, this.props.iconStyle, (el.props.name || el.key) == selected ? this.props.selectedIconStyle || el.props.selectedIconStyle || {} : {} ]}
+  						onPress={():void=>!self.props.locked && self.onSelect(el)}
+  						onLongPress={()=>self.onSelect(el)}
+  						activeOpacity={el.props.pressOpacity}>
+  							{selected == (el.props.name || el.key) ? React.cloneElement(el, {selected: true, style: [el.props.style, this.props.selectedStyle, el.props.selectedStyle]}) : el}
+  					</TouchableOpacity>
 
-				)}
-			</View>
+  				)}
+  			</View>
+      </View>
 		);
   }
 }
@@ -96,9 +100,9 @@ Tabs.Item = class TabItem extends React.Component {
 
   render() {
     return (
-      <View>
-        <Image source={require(this.props.icon)} />
-        <Text>this.props.title</Text>
+      <View style={{alignItems: 'center', justifyContent: 'center', padding: 5}}>
+        <Image source={this.props.icon} />
+        <Text>{this.props.title}</Text>
       </View>
     );
   }
