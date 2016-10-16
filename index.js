@@ -13,7 +13,7 @@ import {
 	Platform,
 } from "react-native";
 
-/* 
+/*
  Options: ["^State$"]
 */
 type State = {
@@ -49,7 +49,7 @@ export default class Tabs extends Component {
   keyboardWillShow(e: any) {
   	this.setState({ keyboardUp: true });
   };
-  
+
   keyboardWillHide(e: any) {
     this.setState({ keyboardUp: false });
   };
@@ -66,8 +66,8 @@ export default class Tabs extends Component {
 		}
 		return (
 			<View style={[styles.tabbarView, this.props.style, this.state.keyboardUp && styles.hidden]}>
-				
-				{React.Children.map(this.props.children.filter(c=>c),(el)=>
+
+				{/* {React.Children.map(this.props.children.filter(c=>c),(el)=>
 					<TouchableOpacity key={el.props.name + "touch"}
 						testID={el.props.testID}
 						style={[styles.iconView, this.props.iconStyle, (el.props.name || el.key) == selected ? this.props.selectedIconStyle || el.props.selectedIconStyle || {} : {} ]}
@@ -75,12 +75,37 @@ export default class Tabs extends Component {
 						onLongPress={()=>self.onSelect(el)}
 						activeOpacity={el.props.pressOpacity}>
 							{selected == (el.props.name || el.key) ? React.cloneElement(el, {selected: true, style: [el.props.style, this.props.selectedStyle, el.props.selectedStyle]}) : el}
-					</TouchableOpacity>
+					</TouchableOpacity> */}
+          this.props.children
 				)}
 			</View>
 		);
   }
 }
+
+Tabs.TabItem = class TabItem {
+  state: any;
+  title: string;
+  icon: any;
+  selectedIcon: ?any;
+  selected: boolean;
+  onPress: ?() => void;
+
+  constructor(props) {
+    super(props);
+
+    this.state = {
+
+    };
+  }
+
+  render() {
+    return (
+      <TouchableOpacity />
+    );
+  }
+}
+
 const styles = StyleSheet.create({
 	tabbarView: {
 		position:"absolute",
@@ -113,4 +138,3 @@ const styles = StyleSheet.create({
 		height: 0,
 	},
 });
-

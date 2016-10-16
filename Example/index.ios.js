@@ -11,8 +11,10 @@ import {
   Text,
   View,
   Image
-} from 'react-native';
-import Tabs from 'react-native-tabs';
+} from "react-native";
+
+import Tabs from './lib/tabCore';
+// import Tabs from './lib/test';
 
 // type State = {
 //   page: string
@@ -20,13 +22,13 @@ import Tabs from 'react-native-tabs';
 
 export default class Example extends React.Component {
   state: {
-    page: string 
+    page: string
   };
 
   constructor(props: any) {
     super(props);
-    this.state = { 
-      page: 'second' 
+    this.state = {
+      page: 'second'
     };
   }
 
@@ -35,14 +37,25 @@ export default class Example extends React.Component {
     return (
       <View style={styles.container}>
         <Tabs selected={this.state.page} style={{ backgroundColor: 'white' }}
-          selectedStyle={{ color: 'red' }} onSelect={el => this.setState({ page: el.props.name }) }
+          selectedStyle={{}} onSelect={el => this.setState({ page: el.props.name }) }
           pressOpacity={1}>
           <View name="first">
             <Image style={{width:30, height:30}} source={require("./images/Home@2x.png")}/>
             <Text>First</Text>
           </View>
           <Text name="second" selectedIconStyle={{ borderTopWidth: 2, borderTopColor: 'red' }}>Second</Text>
-          <Text name="third">Third</Text>
+          <Tabs.Item
+            icon='./images/Account@2x.png'
+            selectedIcon='./images/Account_selected@2x.png'
+            title='First'
+            selected={this.state.selectedTab === 'third'}
+            onPress={() => {
+              this.setState({selctedTab: 'third'});
+            }}>
+            <View style={{flex: 1}}>
+              <Text style={{fontSize: 30}}>TAB 1</Text>
+            </View>
+          </Tabs.Item>
           <Text name="fourth" selectedStyle={{ color: 'green' }}>Fourth</Text>
           <View name="fifth">
             <Image style={{width:30, height:30}} source={require("./images/Account@2x.png")}/>
@@ -80,4 +93,3 @@ var styles = StyleSheet.create({
 });
 
 AppRegistry.registerComponent('Example', () => Example);
-
