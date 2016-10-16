@@ -31,11 +31,16 @@ import TabItem from './TabItem';
 
 type State = {
 	keyboardUp: boolean,
-	currentTabView: ReactElement<*>
+	currentTabView: ?ReactElement<*>
 };
 
 type Props = {
-
+	style: any,
+	selectedStyle: any,
+	selected: string,
+	iconStyle: any,
+	locked: boolean,
+	onPress: ?(el: any)=>void
 };
 
 export default class Tabs extends React.Component {
@@ -51,7 +56,7 @@ export default class Tabs extends React.Component {
 
     this.state = {
       keyboardUp: false,
-      currentTabView: ReactElement<*>
+      currentTabView: null
     };
 
     this.onSelect = this.onSelect.bind(this);
@@ -64,11 +69,19 @@ export default class Tabs extends React.Component {
 	}
 
   onSelect(el: any){
-    if (el.props.onSelect) {
+    let tabContent = null;
+
+    if (el.props.onPress) {
+      tabContent = el.props.children;
       el.props.onPress(el);
     } else if (this.props.onSelect) {
+      tabContent = this.props.children;
       this.props.onPress(el);
     }
+
+    this.setState({
+      currentTabView: tabContent
+    });
   }
 
   componentWillMount(){
@@ -97,15 +110,16 @@ export default class Tabs extends React.Component {
 			});
 		}
 		return (
-      <View>
-        {}
+      <View style={{flex: 1}}>
+        {this.state.currentTabView}
+
   			<View style={[styles.tabbarView, this.props.style, this.state.keyboardUp && styles.hidden]}>
 
   				{React.Children.map(this.props.children.filter(c=>c), (el)=>
   					<TouchableOpacity key={el.props.name + "touch"}
   						testID={el.props.testID}
   						style={[styles.iconView, this.props.iconStyle, (el.props.name || el.key) == selected ? this.props.selectedIconStyle || el.props.selectedIconStyle || {} : {} ]}
-  						onPress={():void=>!self.props.locked && self.onSelect(el)}
+  						onPress={():boolean=>!self.props.locked && self.onSelect(el)}
   						onLongPress={()=>self.onSelect(el)}
   						activeOpacity={el.props.pressOpacity}>
   							{selected == (el.props.name || el.key) ? React.cloneElement(el, {selected: true, style: [el.props.style, this.props.selectedStyle, el.props.selectedStyle]}) : el}

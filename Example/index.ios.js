@@ -35,40 +35,63 @@ export default class Example extends React.Component {
   render() {
     var self = this;
     return (
-      <View style={styles.container}>
-        <Tabs selected={this.state.page} style={{ backgroundColor: 'white' }}
-          selectedStyle={{}} onSelect={el => this.setState({ page: el.props.name }) }
-          pressOpacity={1}>
-          <View name="first">
-            <Image style={{width:30, height:30}} source={require("./images/Home@2x.png")}/>
-            <Text>First</Text>
+      <Tabs selected={this.state.page} style={{ backgroundColor: 'white' }}
+        selectedStyle={{}} onSelect={el => this.setState({ page: el.props.name }) }
+        pressOpacity={1}>
+        <Tabs.Item
+          icon={require('./images/Home@2x.png')}
+          selectedIcon={require('./images/Home_selected@2x.png')}
+          title='First'
+          selected={this.state.selectedTab === 'first'}
+          onPress={() => {
+            this.setState({selctedTab: 'first'});
+          }}>
+          <View style={{flex: 1, backgroundColor:'red'}}>
+            <Text style={{fontSize: 30}}>TAB 1</Text>
           </View>
-          <Text name="second" selectedIconStyle={{ borderTopWidth: 2, borderTopColor: 'red' }}>Second</Text>
-          <Tabs.Item
-            icon={require('./images/Account@2x.png')}
-            selectedIcon={require('./images/Account_selected@2x.png')}
-            title='First'
-            selected={this.state.selectedTab === 'third'}
-            onPress={() => {
-              this.setState({selctedTab: 'third'});
-            }}>
-            <View style={{flex: 1}}>
-              <Text style={{fontSize: 30}}>TAB 1</Text>
-            </View>
-          </Tabs.Item>
-          <Text name="fourth" selectedStyle={{ color: 'green' }}>Fourth</Text>
-          <View name="fifth">
-            <Image style={{width:30, height:30}} source={require("./images/Account@2x.png")}/>
-            <Text>First</Text>
+        </Tabs.Item>
+        {/* <Text name="second" selectedIconStyle={{ borderTopWidth: 2, borderTopColor: 'red' }}>Second</Text> */}
+        <Tabs.Item
+          icon={require('./images/Home@2x.png')}
+          selectedIcon={require('./images/Home_selected@2x.png')}
+          title='Second'
+          selected={this.state.selectedTab === 'second'}
+          onPress={() => {
+            this.setState({selctedTab: 'second'});
+          }}>
+          <View style={{flex: 1, backgroundColor:'blue'}}>
+            <Text style={{fontSize: 30}}>TAB 2</Text>
           </View>
-        </Tabs>
-        <Text style={styles.welcome}>
-          Welcome to React Native
-        </Text>
-        <Text style={styles.instructions}>
-          Selected page: {this.state.page}
-        </Text>
-      </View>
+        </Tabs.Item>
+        <Tabs.Item
+          icon={require('./images/Account@2x.png')}
+          selectedIcon={require('./images/Account_selected@2x.png')}
+          title='Third'
+          selected={this.state.selectedTab === 'third'}
+          onPress={() => {
+            this.setState({selctedTab: 'third'});
+          }}>
+          <View style={{flex: 1, backgroundColor:'green'}}>
+            <Text style={{fontSize: 30}}>TAB 3</Text>
+          </View>
+        </Tabs.Item>
+        <Tabs.Item
+          icon={require('./images/Account@2x.png')}
+          selectedIcon={require('./images/Account_selected@2x.png')}
+          title='Forth'
+          selected={this.state.selectedTab === 'forth'}
+          onPress={() => {
+            this.setState({selctedTab: 'forth'});
+          }}>
+          <View style={{flex: 1, backgroundColor:'orange'}}>
+            <Text style={{fontSize: 30}}>TAB 4</Text>
+          </View>
+        </Tabs.Item>
+        {/* <View name="fifth">
+          <Image style={{width:30, height:30}} source={require("./images/Account@2x.png")}/>
+          <Text>First</Text>
+        </View> */}
+      </Tabs>
     );
   }
 }

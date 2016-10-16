@@ -22,19 +22,23 @@ import {
   Text
 } from 'react-native';
 
-class TabItem extends React.Component {
-  state: any;
+type Props = {
   title: string;
   icon: string;
   selectedIcon: ?string;
   selected: boolean;
   onPress: ?() => void;
+};
+
+export default class TabItem extends React.Component {
+  state: any;
+  props: Props;
 
   constructor(props) {
     super(props);
 
     this.state = {
-      
+
     };
   }
 
