@@ -1,4 +1,19 @@
-//@flow
+/**
+ * The examples provided by Uncle Charlie are for non-commercial testing and
+ * evaluation purposes only.
+ *
+ * Uncle Charlie reserves all rights not expressly granted.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+ * OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NON INFRINGEMENT. IN NO EVENT SHALL
+ * FACEBOOK BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN
+ * AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
+ * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ *
+ * @providesModule Tabs
+ * @flow
+ */
 
 import React from "react";
 
@@ -12,20 +27,41 @@ import {
 	Platform,
 } from "react-native";
 
+import TabItem from './TabItem';
+
+type State = {
+	keyboardUp: boolean,
+	currentTabView: ReactElement<*>
+};
+
+type Props = {
+
+};
+
 export default class Tabs extends React.Component {
+	props: Props;
+	state: State;
+
+	onSelect: (el: any) => void;
+	keyboardWillShow: (e: any) => void;
+	keyboardWillHide: (e: any) => void;
 
 	constructor(props) {
     super(props);
 
     this.state = {
       keyboardUp: false,
-      currentTabView: {}
+      currentTabView: ReactElement<*>
     };
 
     this.onSelect = this.onSelect.bind(this);
     this.keyboardWillHide = this.keyboardWillHide.bind(this);
     this.keyboardWillShow = this.keyboardWillShow.bind(this);
   }
+
+	static get Item() {
+		return TabItem;
+	}
 
   onSelect(el: any){
     if (el.props.onSelect) {
@@ -74,37 +110,10 @@ export default class Tabs extends React.Component {
   						activeOpacity={el.props.pressOpacity}>
   							{selected == (el.props.name || el.key) ? React.cloneElement(el, {selected: true, style: [el.props.style, this.props.selectedStyle, el.props.selectedStyle]}) : el}
   					</TouchableOpacity>
-
   				)}
   			</View>
       </View>
 		);
-  }
-}
-
-Tabs.Item = class TabItem extends React.Component {
-  state: any;
-  title: string;
-  icon: string;
-  selectedIcon: ?string;
-  selected: boolean;
-  onPress: ?() => void;
-
-  constructor(props) {
-    super(props);
-
-    this.state = {
-
-    };
-  }
-
-  render() {
-    return (
-      <View style={{alignItems: 'center', justifyContent: 'center', padding: 5}}>
-        <Image source={this.props.icon} />
-        <Text>{this.props.title}</Text>
-      </View>
-    );
   }
 }
 

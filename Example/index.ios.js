@@ -13,7 +13,7 @@ import {
   Image
 } from "react-native";
 
-import Tabs from './lib/tabCore';
+import Tabs from './Lib/TabCore';
 // import Tabs from './lib/test';
 
 // type State = {
