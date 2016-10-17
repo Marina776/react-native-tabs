@@ -11,48 +11,102 @@ I'm trying to make this tab works just like the React Native TabBarIOS. Similar 
 
 ## Example
 Example makes selected icon color red and change the state of example view. To switch to other views you may use react-native-router-flux component or own navigation controller
-![demo-2](https://cloud.githubusercontent.com/assets/1321329/10188030/adf5532c-675c-11e5-8447-227ec38fa24f.gif)
+![demo-2](./RN_TAB.gif)
 
 ```javascript
-import React, { Component } from 'react';
+import React from 'react';
 import {
   AppRegistry,
   StyleSheet,
   Text,
   View,
-} from 'react-native';
+  Image
+} from "react-native";
 
-import Tabs from 'react-native-tabs';
+import Tabs from './Lib/TabCore';
+// import Tabs from './lib/test';
 
-class Example extends Component {
-  constructor(props){
+// type State = {
+//   page: string
+// };
+
+export default class Example extends React.Component {
+  state: {
+    selectedTab: string
+  };
+
+  constructor(props: any) {
     super(props);
-    this.state = {page:'second'};
+    this.state = {
+      selectedTab: 'first'
+    };
   }
+
   render() {
     var self = this;
     return (
-      <View style={styles.container}>
-        <Tabs selected={this.state.page} style={{backgroundColor:'white'}}
-              selectedStyle={{color:'red'}} onSelect={el=>this.setState({page:el.props.name})}>
-            <Text name="first">First</Text>
-            <Text name="second" selectedIconStyle={{borderTopWidth:2,borderTopColor:'red'}}>Second</Text>
-            <Text name="third">Third</Text>
-            <Text name="fourth" selectedStyle={{color:'green'}}>Fourth</Text>
-            <Text name="fifth">Fifth</Text>
-        </Tabs>
-          <Text style={styles.welcome}>
-              Welcome to React Native
-          </Text>
-          <Text style={styles.instructions}>
-              Selected page: {this.state.page}
-          </Text>
-      </View>
+      <Tabs selected={this.state.selectedTab} style={{ backgroundColor: 'white' }}
+        selectedStyle={{}} onSelect={el => this.setState({ page: el.props.name }) }
+        pressOpacity={1}>
+        <Tabs.Item
+          icon={require('./images/Home@2x.png')}
+          selectedIcon={require('./images/Home_selected@2x.png')}
+          title='First'
+          selected={this.state.selectedTab === 'first'}
+          onPress={() => {
+            this.setState({selectedTab: 'first'});
+          }}>
+          <View style={[styles.container, {flex: 1, backgroundColor:'red'}]}>
+            <Text style={{fontSize: 30}}>TAB 1</Text>
+          </View>
+        </Tabs.Item>
+        {/* <Text name="second" selectedIconStyle={{ borderTopWidth: 2, borderTopColor: 'red' }}>Second</Text> */}
+        <Tabs.Item
+          icon={require('./images/Home@2x.png')}
+          selectedIcon={require('./images/Home_selected@2x.png')}
+          title='Second'
+          selected={this.state.selectedTab === 'second'}
+          onPress={() => {
+            this.setState({selectedTab: 'second'});
+          }}>
+          <View style={[styles.container, {flex: 1, backgroundColor:'blue'}]}>
+            <Text style={{fontSize: 30, color: 'white'}}>TAB 2</Text>
+          </View>
+        </Tabs.Item>
+        <Tabs.Item
+          icon={require('./images/Account@2x.png')}
+          selectedIcon={require('./images/Account_selected@2x.png')}
+          title='Third'
+          selected={this.state.selectedTab === 'third'}
+          onPress={() => {
+            this.setState({selectedTab: 'third'});
+          }}>
+          <View style={[styles.container, {flex: 1, backgroundColor:'green'}]}>
+            <Text style={{fontSize: 30}}>TAB 3</Text>
+          </View>
+        </Tabs.Item>
+        <Tabs.Item
+          icon={require('./images/Account@2x.png')}
+          selectedIcon={require('./images/Account_selected@2x.png')}
+          title='Forth'
+          selected={this.state.selectedTab === 'forth'}
+          onPress={() => {
+            this.setState({selectedTab: 'forth'});
+          }}>
+          <View style={[styles.container, {flex: 1, backgroundColor:'orange'}]}>
+            <Text style={{fontSize: 30}}>TAB 4</Text>
+          </View>
+        </Tabs.Item>
+        {/* <View name="fifth">
+          <Image style={{width:30, height:30}} source={require("./images/Account@2x.png")}/>
+          <Text>First</Text>
+        </View> */}
+      </Tabs>
     );
   }
 }
 
-const styles = StyleSheet.create({
+var styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
@@ -72,4 +126,5 @@ const styles = StyleSheet.create({
 });
 
 AppRegistry.registerComponent('Example', () => Example);
+
 ```
