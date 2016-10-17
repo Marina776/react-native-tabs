@@ -11,6 +11,7 @@ I'm trying to make this tab works just like the React Native TabBarIOS. Similar 
 
 ## Example
 Example makes selected icon color red and change the state of example view. To switch to other views you may use react-native-router-flux component or own navigation controller
+
 ![demo-2](./RN_TAB.gif)
 
 ```javascript
