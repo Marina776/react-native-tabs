@@ -12,7 +12,7 @@
  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *
  * @providesModule TabItem
- * @flow
+ * @flow-weak
  */
 
 import React from 'react';
@@ -24,8 +24,8 @@ import {
 
 type Props = {
   title: string,
-  icon: string,
-  selectedIcon: ?string,
+  icon: any,
+  selectedIcon: ?any,
   selected: boolean,
   onPress: ?() => void,
   onSelect: () => void,
@@ -35,6 +35,7 @@ type Props = {
 export default class TabItem extends React.Component {
   state: any;
   props: Props;
+  _renderTabIcon: ()=>ReactElement<*>;
 
   constructor(props) {
     super(props);
@@ -42,13 +43,28 @@ export default class TabItem extends React.Component {
     this.state = {
 
     };
+
+    this._renderTabIcon = this._renderTabIcon.bind(this);
+  }
+
+  _renderTabIcon() {
+    let source = null;
+    if(this.props.selected) {
+      source = this.props.selectedIcon;
+    } else {
+      source = this.props.icon;
+    }
+
+    return <Image source={source} />;
   }
 
   render() {
+    let itemSelected = this.props.selected;
+
     return (
       <View style={{alignItems: 'center', justifyContent: 'center', padding: 5}}>
-        <Image source={this.props.icon} />
-        <Text>{this.props.title}</Text>
+        <Image source={itemSelected ? this.props.selectedIcon : this.props.icon} />
+        <Text style={itemSelected ? {color: 'blue'}: {color: 'black'}}>{this.props.title}</Text>
       </View>
     );
   }
