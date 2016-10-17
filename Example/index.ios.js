@@ -22,7 +22,7 @@ import Tabs from './Lib/TabCore';
 
 export default class Example extends React.Component {
   state: {
-    page: string
+    selectedTab: string
   };
 
   constructor(props: any) {
@@ -35,7 +35,7 @@ export default class Example extends React.Component {
   render() {
     var self = this;
     return (
-      <Tabs selected={this.state.page} style={{ backgroundColor: 'white' }}
+      <Tabs selected={this.state.selectedTab} style={{ backgroundColor: 'white' }}
         selectedStyle={{}} onSelect={el => this.setState({ page: el.props.name }) }
         pressOpacity={1}>
         <Tabs.Item
@@ -44,7 +44,7 @@ export default class Example extends React.Component {
           title='First'
           selected={this.state.selectedTab === 'first'}
           onPress={() => {
-            this.setState({selctedTab: 'first'});
+            this.setState({selectedTab: 'first'});
           }}>
           <View style={{flex: 1, backgroundColor:'red'}}>
             <Text style={{fontSize: 30}}>TAB 1</Text>
@@ -57,7 +57,7 @@ export default class Example extends React.Component {
           title='Second'
           selected={this.state.selectedTab === 'second'}
           onPress={() => {
-            this.setState({selctedTab: 'second'});
+            this.setState({selectedTab: 'second'});
           }}>
           <View style={{flex: 1, backgroundColor:'blue'}}>
             <Text style={{fontSize: 30, color: 'white'}}>TAB 2</Text>
@@ -69,7 +69,7 @@ export default class Example extends React.Component {
           title='Third'
           selected={this.state.selectedTab === 'third'}
           onPress={() => {
-            this.setState({selctedTab: 'third'});
+            this.setState({selectedTab: 'third'});
           }}>
           <View style={{flex: 1, backgroundColor:'green'}}>
             <Text style={{fontSize: 30}}>TAB 3</Text>
@@ -81,7 +81,7 @@ export default class Example extends React.Component {
           title='Forth'
           selected={this.state.selectedTab === 'forth'}
           onPress={() => {
-            this.setState({selctedTab: 'forth'});
+            this.setState({selectedTab: 'forth'});
           }}>
           <View style={{flex: 1, backgroundColor:'orange'}}>
             <Text style={{fontSize: 30}}>TAB 4</Text>

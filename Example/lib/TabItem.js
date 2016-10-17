@@ -23,11 +23,13 @@ import {
 } from 'react-native';
 
 type Props = {
-  title: string;
-  icon: string;
-  selectedIcon: ?string;
-  selected: boolean;
-  onPress: ?() => void;
+  title: string,
+  icon: string,
+  selectedIcon: ?string,
+  selected: boolean,
+  onPress: ?() => void,
+  onSelect: () => void,
+
 };
 
 export default class TabItem extends React.Component {

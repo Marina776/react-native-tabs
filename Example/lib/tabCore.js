@@ -12,7 +12,7 @@
  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *
  * @providesModule Tabs
- * @flow
+ * @flow-weak
  */
 
 import React from "react";
@@ -58,6 +58,8 @@ export default class Tabs extends React.Component {
       keyboardUp: false,
       currentTabView: null
     };
+
+		this.tabView = null;
 
     this.onSelect = this.onSelect.bind(this);
     this.keyboardWillHide = this.keyboardWillHide.bind(this);
@@ -107,11 +109,23 @@ export default class Tabs extends React.Component {
 				if (!selected || el.props.initial){
 						selected = el.props.name || el.key;
 				}
+
+				console.log(el.props.selected ? 'TAB ITEM selected' : 'item not selected');
 			});
 		}
+
+		// let tabView = null;
+		let selectedTab = this.props.selected;
+		React.Children.forEach(this.props.children, (el) => {
+			console.log(`title:- ${el.props.title}, ${el.props.selected}`);
+			if(el.props.selected) {
+				this.tabView = el.props.children;
+			}
+		});
 		return (
       <View style={{flex: 1}}>
-        {this.state.currentTabView}
+        {/* {this.state.currentTabView} */}
+				{this.tabView}
 
   			<View style={[styles.tabbarView, this.props.style, this.state.keyboardUp && styles.hidden]}>
 
