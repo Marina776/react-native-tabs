@@ -43,8 +43,6 @@ export default class TabItem extends React.Component {
     this.state = {
 
     };
-
-    this._renderTabIcon = this._renderTabIcon.bind(this);
   }
 
   render() {

@@ -46,7 +46,7 @@ export default class Example extends React.Component {
           onPress={() => {
             this.setState({selectedTab: 'first'});
           }}>
-          <View style={{flex: 1, backgroundColor:'red'}}>
+          <View style={[styles.container, {flex: 1, backgroundColor:'red'}]}>
             <Text style={{fontSize: 30}}>TAB 1</Text>
           </View>
         </Tabs.Item>
@@ -59,7 +59,7 @@ export default class Example extends React.Component {
           onPress={() => {
             this.setState({selectedTab: 'second'});
           }}>
-          <View style={{flex: 1, backgroundColor:'blue'}}>
+          <View style={[styles.container, {flex: 1, backgroundColor:'blue'}]}>
             <Text style={{fontSize: 30, color: 'white'}}>TAB 2</Text>
           </View>
         </Tabs.Item>
@@ -71,7 +71,7 @@ export default class Example extends React.Component {
           onPress={() => {
             this.setState({selectedTab: 'third'});
           }}>
-          <View style={{flex: 1, backgroundColor:'green'}}>
+          <View style={[styles.container, {flex: 1, backgroundColor:'green'}]}>
             <Text style={{fontSize: 30}}>TAB 3</Text>
           </View>
         </Tabs.Item>
@@ -83,7 +83,7 @@ export default class Example extends React.Component {
           onPress={() => {
             this.setState({selectedTab: 'forth'});
           }}>
-          <View style={{flex: 1, backgroundColor:'orange'}}>
+          <View style={[styles.container, {flex: 1, backgroundColor:'orange'}]}>
             <Text style={{fontSize: 30}}>TAB 4</Text>
           </View>
         </Tabs.Item>

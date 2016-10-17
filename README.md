@@ -1,19 +1,13 @@
 # react-native-tabs
-React Native platform-independent tabs. Could be used for bottom tab bars as well as sectioned views (with tab buttons)
+React Native platform-independent tabs. Originally forked form https://github.com/aksonov/react-native-tabs.
 
 ## Why I need to use it?
-- Decouple content views from tab bar
-- Platform-indepedent
-- Possibility to use Flux actions with react-native-router-flux to switch between content views
-- Suitable for both bottom tab bar as well as upper sectioned buttons (you just need to define style properly)
-- Custom views for each tab icon
+I'm developing an app which needs to run on both iOS and Android with bottom tabs. Obviously React Native does not provide Android one, and the forked one can not work as I need.
+
+So I develop one based on the forked one.
 
 ## How it works?
-Component just iterates over all its children and makes them touchable ('name' is only required attribute of each child).
-selectedStyle property represents style should be applied for selected tabs. This property could be set for all tabs or for individual tab.
-selectedIconStyle represents style applied for selected tab.
-The same, onSelect handler could be set globally for all tabs or/and for individual tab.
-You can lock tab buttons (require user to use long press to actuate the button) by passing prop {locked: true}.
+I'm trying to make this tab works just like the React Native TabBarIOS. Similar API will cost you less time to integrate it.
 
 ## Example
 Example makes selected icon color red and change the state of example view. To switch to other views you may use react-native-router-flux component or own navigation controller
