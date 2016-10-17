@@ -14,6 +14,7 @@ Example makes selected icon color red and change the state of example view. To s
 
 ![demo-2](./RN_TAB.gif)
 
+## How to use
 ```javascript
 import React from 'react';
 import {
